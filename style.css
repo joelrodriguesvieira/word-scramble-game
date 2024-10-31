@@ -8,9 +8,11 @@
 }
 
 body {
-    background-color: #f9f9f9;
+    background-image: url('./imgs/background-img.jpg');
+	background-size: cover;
     display: flex;
     justify-content: center;
+	flex-direction: column;
     align-items: center;
     height: 100vh;
     color: #333;
@@ -22,24 +24,20 @@ main {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 90%;
-    height: 350px;
+    height: 280px;
     max-width: 600px;
     text-align: center;
 }
 
 header {
+	display:flex;
+	flex-direction: column;
+	align-items: center;
     margin-bottom: 25px;
 }
 
-header h1 {
-    font-size: 36px;
-    color: #ff5722;
-}
-
-header h2 {
-    font-size: 30px;
-    color: #00796b;
-    margin-bottom: 10px;
+#title-game {
+	display: flex;
 }
 
 .game {
@@ -47,29 +45,28 @@ header h2 {
 }
 
 .head-game h4 {
-    font-size: 25px;
+    font-size: 35px;
     color: #ff5722;
 }
 
-header span {
-    font-size: 16px;
-    color: #555;
+.tip-text {
+    font-size: 30px;
     display: inline-block;
     margin-bottom: 10px;
-    border-bottom: 1px solid #555;
+	text-shadow: 2px 2px 4px white;
 }
 
 #sorted-word {
-    font-size: 22px;
+    font-size: 38px;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 #sorted-word p {
     display: inline-block;
     margin: 0 5px;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     cursor: grab;
 }
@@ -95,7 +92,7 @@ header span {
     justify-content: center;
     flex-direction: column;
     align-items: center;    
-    padding: 10px 0;
+    padding: 10px 0 15px 0;
 }
 
 .divs {
@@ -108,16 +105,28 @@ header span {
     font-size: 20px;
 }
 
+.score {
+    position: absolute;
+    font-size: 25px;
+}
+
 #button-reset {
     background-color: #f39c12;
     color: #fff;
     border: none;
     padding: 5px 20px;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 10px;
     cursor: pointer; 
     box-shadow: 0 4px #e67e22;
     transition: all 0.3s ease;
+}
+footer span{
+    text-shadow: 2px 2px white;
+}
+
+footer span a {
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {

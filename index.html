@@ -7,12 +7,11 @@
     <title>GAME - Desembaralhador De Palavras</title>
 </head>
 <body>
-    <main>
-        <header>
-            <h1>Desembaralhador De Palavras</h1>
-            <span>Arraste cada letra para seu devido lugar</span>
-            <h2>Boa sorte, Player!</h2>
-        </header>
+	<header>
+        <h1 id="title-game"></h1>
+        <span class="tip-text">Coloque as letras na ordem correta</span>
+    </header>
+    <main>     
         <div class="game">
             <div class="head-game">
                 <h4>Desembaralhe a palavra: </h4>
@@ -22,8 +21,16 @@
                 <div id="input-word"></div>
             </div>
             <div id="result-game"></div>
+            <div class="score">
+                <span>Pontuação: <span id="score-text">0</span></span>
+            </div>
         </div>
     </main>
+    <footer>
+        <span>Maked by <a href="https://www.instagram.com/jooel_vieira?igsh=MTV1b3I5eDhtbXJ2Nw%3D%3D&utm_source=qr" target="_blank">Joel Rodrigues Vieira;</a></span>
+        <span>Professor Jair Galvão;</span>
+        <span>Programação Web 2.0</span>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
