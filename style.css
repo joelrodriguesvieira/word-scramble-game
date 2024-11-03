@@ -41,6 +41,7 @@ header {
 }
 
 .game {
+    position: relative;
     margin-top: 15px;
 }
 
@@ -93,6 +94,7 @@ header {
     flex-direction: column;
     align-items: center;    
     padding: 10px 0 15px 0;
+    height: 115px;
 }
 
 .divs {
@@ -100,15 +102,45 @@ header {
     font-weight: bold;
 }
 
+#input-word {
+    height: 60px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
 #result-game {
     padding: 0 0 8px 0;
     font-size: 20px;
 }
 
 .score {
-    position: absolute;
-    font-size: 25px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+
+#tip-game {
+    border-radius: 5px;
+    background-color: #4CAF50;
+    border: none;
+    width: 60px;
+    height: 40px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.blink-green {
+    background-color: green;
+    transition: background-color 0.5s ease;
+}
+
 
 #button-reset {
     background-color: #f39c12;
@@ -128,6 +160,42 @@ footer span{
 footer span a {
     text-decoration: none;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    font-size: 35px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#play-again {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
 
 @media (max-width: 768px) {
     header h1 {

@@ -1,8 +1,8 @@
 window.addEventListener("load", main);
 
 const listWords = [
-    'SAPO', 'AVIÃO', 'TELEFONE', 'DOENÇA', 'NARIZ', 'FORMIGA', 'CRUZ', 'SEMÁFARO',
-    'BASQUETE', 'DESENHO', 'ACADEMIA', 'ELEFANTE', 'ALMOÇO', 'TIGRE', 'CINZA'
+    'SAPO', 'AVIÃO', 'TELEFONE', 'DOENÇA', 'NARIZ', 'FORMIGA', 'CRUZ', 'SEMÁFORO',
+    'BASQUETE', 'DESENHO','ELEFANTE', 'ALMOÇO', 'TIGRE', 'CINZA', 'CADEIRA'
 ];
 const colors = ['navy','darksalmon', 'purple', 'black', 'red', 'lime', 'teal', 'deeppink','mediumvioletred'];
 const titleGame = window.document.getElementById('title-game');
@@ -14,7 +14,10 @@ let score = 0;
 divResultWord.style.width = 'auto'
 divResultWord.style.height = 'auto'
 let randomWord = handleWord(listWords)
-
+const tipButton = window.document.getElementById('tip-game')
+let tips = 3
+tipButton.addEventListener('click', () => showTip(randomWord))
+tipButton.innerText = 'Dica x3'
 function main() {
     paintTitle()
     const shuffledWord = shuffleWord(randomWord);
@@ -109,8 +112,6 @@ function checkSquares() {
 function checkResult() {
     const allSquares = document.querySelectorAll('.divs')
     const buttonReset = document.createElement('button')
-    const textResult = document.createElement('p')
-    textResult.style.fontSize = '25px';
     buttonReset.id = 'button-reset'
 
     let joinLettersForSquare = ''
@@ -118,28 +119,58 @@ function checkResult() {
         joinLettersForSquare += square.children[0].innerText
     })
     if (randomWord === joinLettersForSquare) {
-        textResult.innerText = 'Parabéns, você acertou!'
-        divResultGame.appendChild(textResult)
+        showModal('Parabéns, você acertou!')
         score++
         textScore.innerText = score
-        textResult.style.color = 'lime'
     } else {
-        textResult.innerText = 'Falhou, tente novamente!'
-        divResultGame.appendChild(textResult)
+        showModal('Falhou, tente novamente!')
         score--
         textScore.innerText = score
-        textResult.style.color = '#ff0000'
     }
-    buttonReset.innerText = 'Jogar Novamente'
-    divResultGame.appendChild(buttonReset)
-    buttonReset.addEventListener("click", resetGame)
 }
 
 function resetGame() {
+    tips = 3
+    tipButton.innerText = `Dica x${tips}`
+    document.getElementById('modal').style.display = 'none';
     randomWord = handleWord(listWords)
     if (divResultWord.children.length !== 0) {
         divResultWord.innerHTML = ""
         divResultGame.innerHTML = ""
     }
     main()
+}
+
+function showModal(message) {
+    const modal = document.getElementById('modal');
+    const modalMessage = document.getElementById('modal-message');
+    
+    modalMessage.textContent = message;
+    modal.style.display = 'flex'; 
+}
+
+function showTip() {
+    const positionRandom = Math.floor(Math.random() * randomWord.length)
+    const squareRandom = window.document.getElementById(`div${positionRandom+1}`)
+    if (squareRandom.children.length === 0) {
+        const letterToTip = Array.from(divWord.children).find(
+            (letter) => letter.textContent === randomWord[positionRandom]
+        );
+        if (letterToTip) {
+            if (tips > 0) {
+                tips--
+                tipButton.innerText = `Dica x${tips}`
+                squareRandom.appendChild(letterToTip);
+                letterToTip.style.margin = '0';
+                squareRandom.classList.add('blink-green')
+
+                setTimeout(() => {
+                    squareRandom.classList.remove('blink-green')
+                }, 700)
+                checkSquares();
+            }
+        }
+    } else {
+        showTip()
+    }
 }
