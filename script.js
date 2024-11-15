@@ -1,38 +1,23 @@
 window.addEventListener("load", main);
 
 const listWords = [
-    'SAPO', 'AVIÃO', 'TELEFONE', 'DOENÇA', 'NARIZ', 'FORMIGA', 'CRUZ', 'SEMÁFORO',
-    'BASQUETE', 'DESENHO','ELEFANTE', 'ALMOÇO', 'TIGRE', 'CINZA', 'CADEIRA'
+    'SAPO', 'AVIÃO', 'DOENÇA', 'NARIZ','CRUZ', 'BONITO','DESENHO','ELEFANTE', 'ALMOÇO', 'TIGRE', 'CINZA', 'CADEIRA', 'BOLA', 'AMOR'
 ];
-const colors = ['navy','darksalmon', 'purple', 'black', 'red', 'lime', 'teal', 'deeppink','mediumvioletred'];
-const titleGame = window.document.getElementById('title-game');
+
 const divResultGame = window.document.getElementById('result-game')
 const divWord = window.document.getElementById('sorted-word')
 const divResultWord = window.document.getElementById('input-word')
 const textScore = window.document.getElementById('score-text')
 let score = 0;
-divResultWord.style.width = 'auto'
-divResultWord.style.height = 'auto'
 let randomWord = handleWord(listWords)
 const tipButton = window.document.getElementById('tip-game')
 let tips = 3
 tipButton.addEventListener('click', () => showTip(randomWord))
 tipButton.innerText = 'Dica x3'
 function main() {
-    paintTitle()
     const shuffledWord = shuffleWord(randomWord);
     handleDrag(shuffledWord, divWord);
     resultWord(randomWord, divResultWord);
-}
-
-function paintTitle() {
-    titleGame.innerHTML = ''
-    const text = 'Jogo-de-Desembaralhar'
-    for (let i = 0; i < text.length; i++) {
-        const posIndex = Math.floor(Math.random() * (colors.length - 1));
-        const tagText = `<span style="color:${colors[posIndex]}; font-size: 50px; text-shadow: 2px 2px 4px #000000;">${text[i]}</span>`;
-        titleGame.innerHTML += tagText;
-    }
 }
 
 function handleWord(list) {
@@ -130,9 +115,10 @@ function checkResult() {
 }
 
 function resetGame() {
+    const modal = document.getElementById('modal');
     tips = 3
     tipButton.innerText = `Dica x${tips}`
-    document.getElementById('modal').style.display = 'none';
+    modal.classList.remove('show');
     randomWord = handleWord(listWords)
     if (divResultWord.children.length !== 0) {
         divResultWord.innerHTML = ""
@@ -146,7 +132,7 @@ function showModal(message) {
     const modalMessage = document.getElementById('modal-message');
     
     modalMessage.textContent = message;
-    modal.style.display = 'flex'; 
+    modal.classList.add('show');
 }
 
 function showTip() {
